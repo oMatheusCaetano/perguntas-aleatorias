@@ -33,7 +33,8 @@
                     </tbody>
             </table>
         </div>
-        <small class="text-secondary float-right">Limpe a lista antes de carregar novas perguntas</small>
+        
+        <small class="text-secondary float-right">Limpe a lista de perguntas antes de carregar novas perguntas</small>
     </div>
 </template>
 
