@@ -15,6 +15,7 @@
           id="certificate_type"
           v-model="certificateType"
         >
+          <option value="">-- Selecione --</option>
           <option value="certificate_pf">Certificado Pessoa Física</option>
           <option value="certificate_pj">Certificado Pessoa Jurídica</option>
         </select>
@@ -24,7 +25,7 @@
         <button class="btn btn-success btn-sm" @click="loadQuestions()">
           Carregar Perguntas
         </button>
-        <button class="btn btn-danger btn-sm ml-3" @click="refreshPage()">
+        <button class="btn btn-danger btn-sm ml-3">
           Limpar Lista
         </button>
       </div>
@@ -47,68 +48,19 @@
           </tbody>
         </table>
       </div>
-
-      <small class="text-secondary float-right"
-        >Limpe a lista de perguntas antes de carregar novas perguntas</small
-      >
     </div>
   </div>
 </template>
 
 <script>
-import { util } from '../util/util'
-
 export default {
-  data() {
-    return {
-      certificateType: '',
-
-      //   tableQuestions: [],
-
-      //   requiredQuestions: [
-      //     'Me informe por favor seu CPF',
-      //     'Me informe por favor seu nome completo',
-      //     'Me informe por favor sua data de nascimento',
-      //   ],
-
-      //   requiredPjQuestion: 'Em que ano sua empresa foi aberta?',
-
-      //   randomPfQuestions: [
-      //     'Por favor me informe o nome completo da sua mãe',
-      //     'Qual é o seu signo?',
-      //     'Me informe por gentileza o último sobrenome da sua mãe?',
-      //   ],
-
-    //   randomPjQuestions: [
-    //     'Qual é a atividade da sua empresa?',
-    //     'Qual o endereço da sua empresa?',
-    //     'Me informe por gentileza o último sobrenome da sua mãe?',
-    //   ],
-    }
-  },
+  data: () => ({
+    certificateType: '',
+  }),
 
   computed: {
-
-
-    getPfQuestions() {
-      const randomNumber = util.getRandomNumber(
-        -1,
-        this.randomPfQuestions.length - 1,
-      )
-      const questions = this.requiredQuestions
-      questions.push(this.randomPfQuestions[randomNumber])
-      return questions
-    },
-
-    getPjQuestions() {
-      const randomNumber = util.getRandomNumber(
-        -1,
-        this.randomPfQuestions.length - 1,
-      )
-      const questions = this.requiredQuestions
-      questions.push(this.requiredPjQuestion)
-      questions.push(this.randomPjQuestions[randomNumber])
-      return questions
+    tableQuestions() {
+      return this.$store.state.tableQuestions
     },
   },
 
@@ -117,14 +69,15 @@ export default {
       if (this.certificateType === 'certificate_pf') {
         this.$store.dispatch('loadPfQuestions')
       } else if (this.certificateType === 'certificate_pj') {
-        this.$store.dispatch('loadPJQuestions')
+        this.$store.dispatch('loadPjQuestions')
       } else {
-        window.Swal.toast().fire({ icon: 'error', title: 'Por favor, selecione o tipo de pessoa antes de carregar as perguntas' })
+        window.Swal.toast().fire(
+          {
+            icon: 'error',
+            title: 'Por favor, selecione o tipo de pessoa antes de carregar as perguntas',
+          },
+        )
       }
-    },
-
-    refreshPage() {
-      window.location.reload()
     },
   },
 }

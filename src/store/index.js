@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import actions from './actions'
+import mutations from './mutations'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    tableQuestions: [],
+
     requiredQuestions: [
       'Me informe por favor seu CPF',
       'Me informe por favor seu nome completo',
@@ -16,13 +20,15 @@ export default new Vuex.Store({
     randomPfQuestions: [
       'Por favor me informe o nome completo da sua mãe',
       'Qual é o seu signo?',
-      'Me informe por gentileza o último sobrenome da sua mãe?'
+      'Me informe por gentileza o último sobrenome da sua mãe?',
     ],
 
     randomPjQuestions: [
       'Qual é a atividade da sua empresa?',
       'Qual o endereço da sua empresa?',
-      'Me informe por gentileza o último sobrenome da sua mãe?'
-    ]
-  }
+      'Me informe por gentileza o último sobrenome da sua mãe?',
+    ],
+  },
+  actions,
+  mutations,
 })
