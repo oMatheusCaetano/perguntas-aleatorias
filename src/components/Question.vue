@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .checked {
   text-decoration: line-through;
   color: #777;
