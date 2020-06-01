@@ -7,11 +7,9 @@
         src="./assets/img/logo.png"
         alt="soluti"
       />
-
       <div>
         <certificate-select />
       </div>
-
       <div>
         <questions-table />
       </div>
@@ -32,22 +30,5 @@ export default {
   data: () => ({
     certificateType: '',
   }),
-
-  methods: {
-    loadQuestions() {
-      if (this.certificateType === 'certificate_pf') {
-        this.$store.dispatch('loadPfQuestions')
-      } else if (this.certificateType === 'certificate_pj') {
-        this.$store.dispatch('loadPjQuestions')
-      } else {
-        window.Swal.toast().fire(
-          {
-            icon: 'error',
-            title: 'Por favor, selecione o tipo de pessoa antes de carregar as perguntas',
-          },
-        )
-      }
-    },
-  },
 }
 </script>

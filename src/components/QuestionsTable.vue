@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table table-striped">
+    <table class="table table-striped shadow-sm">
       <thead class="thead-dark">
         <tr>
           <th class="text-center check">Realizada</th>

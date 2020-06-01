@@ -2,7 +2,6 @@ import Util from '../util'
 
 export default {
   loadPfQuestions(context) {
-    context.commit('CLEAR_TABLE')
     const randomNumber = Util.getRandomNumber(
       -1,
       context.state.randomPfQuestions.length - 1,
@@ -13,7 +12,6 @@ export default {
   },
 
   loadPjQuestions(context) {
-    context.commit('CLEAR_TABLE')
     const randomNumber = Util.getRandomNumber(
       -1,
       context.state.randomPjQuestions.length - 1,

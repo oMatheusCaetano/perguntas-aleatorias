@@ -1,12 +1,16 @@
 <template>
-    <tr>
-      <td class="text-center" @change="changeQuestionStatus()">
-        <input type="checkbox">
-      </td>
-      <td  :class="{ checked: isDone }">
-        {{ this.question }}
-      </td>
-    </tr>
+  <tr>
+    <td class="text-center">
+      <input
+        type="checkbox"
+        v-model="checkboxChecked"
+        @change="changeQuestionStatus()"
+      />
+    </td>
+    <td :class="{ checked: isDone }">
+      {{ this.question }}
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -19,6 +23,7 @@ export default {
   },
 
   data: () => ({
+    checkboxChecked: false,
     isDone: false,
   }),
 
@@ -26,6 +31,13 @@ export default {
     changeQuestionStatus() {
       this.isDone = !this.isDone
     },
+  },
+
+  created() {
+    window.EventBus.$on('SET_ALL_UNCHECKED', () => {
+      this.checkboxChecked = false
+      this.isDone = false
+    })
   },
 }
 </script>
