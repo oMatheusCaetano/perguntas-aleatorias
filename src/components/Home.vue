@@ -31,20 +31,15 @@
       </div>
 
       <div>
-        <table class="table">
+        <table class="table table-striped">
           <thead class="thead-dark">
             <tr>
-              <th class="col-10" scope="col">Pergunta</th>
-              <th class="col-2" scope="col">Realizada</th>
+              <th class="text-center check">Realizada</th>
+              <th>Pergunta</th>
             </tr>
           </thead>
-          <tbody v-for="question in tableQuestions" :key="question">
-            <tr>
-              <td>{{ question }}</td>
-              <td>
-                <input type="checkbox" />
-              </td>
-            </tr>
+          <tbody>
+            <question v-for="question in tableQuestions" :key="question" :question="question"/>
           </tbody>
         </table>
       </div>
@@ -53,9 +48,15 @@
 </template>
 
 <script>
+import Question from './Question.vue'
+
 export default {
+  components: {
+    Question,
+  },
   data: () => ({
     certificateType: '',
+    isDone: true,
   }),
 
   computed: {
@@ -82,3 +83,14 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.check {
+  width: 10%;
+}
+
+.checked {
+  text-decoration: line-through;
+  color: #777;
+}
+</style>
